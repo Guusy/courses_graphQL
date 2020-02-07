@@ -1,5 +1,5 @@
 'use strict'
-require('dotenv').config();
+require('dotenv').config()
 
 const { makeExecutableSchema } = require('graphql-tools')
 
@@ -13,23 +13,22 @@ const port = process.env.PORT || 3000
 // initial schema
 
 const typeDefs = readFileSync(
-    join(__dirname, 'lib', 'schema.graphql'),
-    'utf-8'
+  join(__dirname, 'lib', 'schema.graphql'),
+  'utf-8'
 )
 const schema = makeExecutableSchema(
-    {
-        typeDefs,
-        resolvers
-    }
-);
-
+  {
+    typeDefs,
+    resolvers
+  }
+)
 
 app.use('/api', gqlMiddleware({
-    schema,
-    rootValue: resolvers,
-    graphiql: true
+  schema,
+  rootValue: resolvers,
+  graphiql: true
 }))
 
 app.listen(port, () => {
-    console.log("Server is listening at", port)
+  console.log('Server is listening at', port)
 })
