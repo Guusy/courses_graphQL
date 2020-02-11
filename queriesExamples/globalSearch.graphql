@@ -1,0 +1,18 @@
+query {
+  searchItems(keyword:"gonzalo"){
+    __typename
+    ... on Course{
+      title
+      teacher
+      description
+    }
+    ... on Monitor{
+      name
+      phone
+    }
+    ... on Student{
+      name
+      email
+    }
+  }
+}
