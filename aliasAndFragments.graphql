@@ -1,0 +1,23 @@
+{
+  AllCourses: getCourses {
+    ...commonFieldsCourse
+  }
+  Course1: getCourse(id: "5e3cbd1a193632ef939e116e") {
+    ...commonFieldsCourse
+    teacher
+  }
+  Course2: getCourse(id: "5e3cbd1a193632ef939e116e") {
+    ...commonFieldsCourse
+    topic
+  }
+}
+
+fragment commonFieldsCourse on Course {
+  _id
+  title
+  description
+  people {
+    _id
+    name
+  }
+}
