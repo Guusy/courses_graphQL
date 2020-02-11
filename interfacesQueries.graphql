@@ -1,0 +1,12 @@
+query {
+  getPeople{
+    name
+    email
+    ... on Monitor {
+      phone
+    }
+     ... on Student {
+      avatar
+    }
+  }
+}

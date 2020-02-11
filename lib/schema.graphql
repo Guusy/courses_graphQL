@@ -15,10 +15,24 @@ type Course {
     level: Level
 }
 
-type Student {
+interface Person {
     _id: ID!
     name: String!
     email: String!
+}
+
+type Student implements Person {
+    _id: ID!
+    name: String!
+    email: String!
+    avatar: String
+}
+
+type Monitor implements Person {
+    _id: ID!
+    name: String!
+    email: String!
+    phone: String
 }
 
 type Query {
@@ -26,10 +40,10 @@ type Query {
     getCourses: [Course]
     "Course by id"
     getCourse( id: ID!): Course
-    "Return all students"
-    getStudents: [Student]
-    "Student by id"
-    getStudent( id: ID!): Student
+    "Return all persons"
+    getPeople: [Person]
+    "Person by id"
+    getPerson( id: ID!): Person
 }
 
 input CourseInput {
@@ -47,14 +61,18 @@ input CourseEditInput {
     topic: String
 }
 
-input StudentInput {
+input PersonInput {
     name: String!
     email: String!
+    phone: String
+    avatar: String
 }
 
-input StudentEditInput {
+input PersonEditInput {
     name: String
     email: String
+    phone: String
+    avatar: String
 }
 
 type Mutation {
@@ -64,10 +82,10 @@ type Mutation {
     editCourse(_id:ID!, input: CourseEditInput!): Course
     "Delete a course"
     deleteCourse( id:ID! ): String
-    "Create a student"
-    createStudent(input: StudentInput!): Student
-    "Edit a student"
-    editStudent(_id:ID!, input: StudentEditInput!): Student
+    "Create a person"
+    createPerson(input: PersonInput!): Person
+    "Edit a person"
+    editPerson(_id:ID!, input: PersonEditInput!): Person
     "Delete a student"
     deleteStudent( id:ID! ): String
     "Add student to a course"
