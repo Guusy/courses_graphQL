@@ -1,0 +1,18 @@
+query getPeopleData($monitor: Boolean!, $avatar: Boolean!) {
+  getPeople {
+    name
+    email
+    ... on Monitor @include(if: $monitor) {
+      phone
+    }
+    ... on Student @skip(if: $avatar) {
+      avatar
+    }
+  }
+}
+
+# query variables
+{
+  "monitor": false,
+  "avatar": true
+}
