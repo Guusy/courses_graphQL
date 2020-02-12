@@ -10,6 +10,8 @@ const { join } = require('path')
 const resolvers = require('./lib/resolvers')
 const app = express()
 const port = process.env.PORT || 3000
+const cors = require('cors')
+const isDev = process.env.NODE_ENV !== 'production'
 // initial schema
 
 const typeDefs = readFileSync(
@@ -23,10 +25,12 @@ const schema = makeExecutableSchema(
   }
 )
 
+app.use(cors())
+
 app.use('/api', gqlMiddleware({
   schema,
   rootValue: resolvers,
-  graphiql: true
+  graphiql: isDev
 }))
 
 app.listen(port, () => {
